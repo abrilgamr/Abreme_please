@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Volvemos a intentarlo?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fbeff2;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #d63384;
+    }
+
+    .button-container {
+      margin-top: 40px;
+      position: relative;
+      height: 200px;
+    }
+
+    button {
+      font-size: 1.5em;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #dc3545;
+      color: white;
+      position: absolute;
+    }
+
+    #message {
+      margin-top: 50px;
+      font-size: 2em;
+      color: #6f42c1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿Quieres volver a intentarlo?</h1>
+
+  <div class="button-container">
+    <button id="yesBtn">Sí</button>
+    <button id="noBtn" style="top: 0; left: 0;">No</button>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+
+    yesBtn.addEventListener('click', () => {
+      message.textContent = "Te amo ❤️";
+      noBtn.style.display = "none";
+      yesBtn.style.display = "none";
+    });
+
+    let posX = 0, posY = 0;
+    let direction = 0; // 0=up, 1=down, 2=right, 3=left
+
+    function moveNoButton() {
+      switch (direction) {
+        case 0: posY -= 20; break; // up
+        case 1: posY += 20; break; // down
+        case 2: posX += 20; break; // right
+        case 3: posX -= 20; break; // left
+      }
+
+      noBtn.style.transform = `translate(${posX}px, ${posY}px)`;
+      direction = (direction + 1) % 4;
+    }
+
+    setInterval(moveNoButton, 500);
+  </script>
+
+</body>
+</html>
